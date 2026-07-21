@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Projects from "@/components/Projects";
 
 export default function Home() {
   return (
@@ -10,6 +11,8 @@ export default function Home() {
         <Hero />
         <div className="mx-auto max-w-3xl border-t border-border" />
         <About />
+        <div className="mx-auto max-w-3xl border-t border-border" />
+        <Projects />
       </main>
     </>
   );
