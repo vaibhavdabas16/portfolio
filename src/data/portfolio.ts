@@ -128,3 +128,12 @@ export const experience: Experience[] = [
     tags: ["Computer Vision", "Python"],
   },
 ];
+
+export type SkillGroup = { label: string; items: string[] };
+
+export const skills: SkillGroup[] = [
+  { label: "languages", items: ["Python", "TypeScript", "C++"] },
+  { label: "ml", items: ["PyTorch", "OpenCV", "scikit-learn"] },
+  { label: "web", items: ["Next.js", "React", "PostgreSQL"] },
+  { label: "tooling", items: ["Git", "Docker", "Figma"] },
+];
