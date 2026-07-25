@@ -137,3 +137,28 @@ export const skills: SkillGroup[] = [
   { label: "web", items: ["Next.js", "React", "PostgreSQL"] },
   { label: "tooling", items: ["Git", "Docker", "Figma"] },
 ];
+
+export type Highlight = { value: string; label: string; note: string };
+
+export const highlights: Highlight[] = [
+  {
+    value: "1st",
+    label: "Placeholder award",
+    note: "Swap these four entries for real, checkable achievements.",
+  },
+  {
+    value: "10k+",
+    label: "Placeholder reach",
+    note: "Keep the value short so it stays on one line.",
+  },
+  {
+    value: "3x",
+    label: "Placeholder improvement",
+    note: "A number with context beats an adjective.",
+  },
+  {
+    value: "2024",
+    label: "Placeholder milestone",
+    note: "Anything a reader can verify in under a minute.",
+  },
+];
