@@ -33,6 +33,11 @@ JetBrains Mono for labels.
 
 ## Deploy
 
+Hosted on Vercel at https://vaibhavdabas.vercel.app, connected to this repo.
+Pushing to `main` builds and promotes to production automatically.
+
+To deploy from the working tree instead of a push:
+
 ```bash
 npm run build
 vercel --prod
