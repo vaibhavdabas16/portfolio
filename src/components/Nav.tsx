@@ -9,6 +9,7 @@ const sections = [
   { id: "work", label: "work" },
   { id: "experience", label: "experience" },
   { id: "skills", label: "skills" },
+  { id: "highlights", label: "highlights" },
   { id: "contact", label: "contact" },
 ];
 
@@ -46,7 +47,7 @@ export default function Nav() {
           {profile.name.split(" ")[0].toLowerCase()}
         </a>
 
-        <ul className="hidden sm:flex items-center gap-1 font-mono text-[13px]">
+        <ul className="hidden md:flex items-center gap-0.5 font-mono text-[13px]">
           {sections.slice(1).map((s) => (
             <li key={s.id}>
               <a
