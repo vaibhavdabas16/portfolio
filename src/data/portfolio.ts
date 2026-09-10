@@ -10,7 +10,13 @@ export const profile = {
   location: "Mohali, India",
   email: "vaibhav16dabas@gmail.com",
   resumeUrl: "",
-  socials: [{ label: "GitHub", url: "https://github.com/vaibhavdabas16" }],
+  socials: [
+    { label: "GitHub", url: "https://github.com/vaibhavdabas16" },
+    {
+      label: "LinkedIn",
+      url: "https://www.linkedin.com/in/vaibhav-dabas-5a5572275/",
+    },
+  ],
   about: [
     "I am in my final year of a BTech in Computer Science and AI at Plaksha University. Most of what I build is multi-step LLM agents: systems that plan, call tools, carry typed state between steps, and fail loudly instead of quietly returning something wrong.",
     "The parts I care about are the ones that usually get skipped. Rate limits and partial data. Malformed intermediate output. Answers the model is confident about and wrong about. What a human reviewer actually sees when the system is unsure. I have put this kind of work in front of real users, not just demos.",
