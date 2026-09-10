@@ -63,11 +63,14 @@ export default function Nav() {
           ))}
         </ul>
 
+        {/* Drop a resume.pdf into /public and set profile.resumeUrl to
+            "/resume.pdf" to turn this into a resume button. */}
         <a
-          href={profile.resumeUrl}
+          href={profile.resumeUrl || `mailto:${profile.email}`}
+          {...(profile.resumeUrl ? { target: "_blank", rel: "noopener" } : {})}
           className="rounded-full border border-border-strong px-3.5 py-1.5 font-mono text-[13px] text-text-primary transition-colors hover:border-accent hover:text-accent"
         >
-          resume
+          {profile.resumeUrl ? "resume" : "email"}
         </a>
       </nav>
     </header>

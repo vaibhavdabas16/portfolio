@@ -7,9 +7,10 @@ export default function Contact() {
       <div className="mx-auto w-full max-w-3xl">
         <SectionLabel command="mail --compose" title="Get in touch" />
 
-        <p className="max-w-lg text-[15px] sm:text-base leading-relaxed text-text-secondary">
-          I&apos;m open to internships, collaborations, and interesting
-          problems. The fastest way to reach me is email — I read everything.
+        <p className="max-w-xl text-[15px] sm:text-base leading-relaxed text-text-secondary">
+          I am looking for a research internship, and I am happy to talk about
+          agent systems, evaluation, or anything on this page. Email is the
+          fastest way to reach me. I read every one.
         </p>
 
         <a
