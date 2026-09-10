@@ -1,16 +1,8 @@
 import type { Project } from "@/data/portfolio";
 
 export default function ProjectCard({ project }: { project: Project }) {
-  const Wrapper = project.link ? "a" : "div";
-  const wrapperProps = project.link
-    ? { href: project.link, target: "_blank", rel: "noopener noreferrer" }
-    : {};
-
   return (
-    <Wrapper
-      {...wrapperProps}
-      className="group flex flex-col rounded-2xl border border-border bg-bg-elevated p-6 transition-colors hover:border-border-strong hover:bg-bg-elevated-hover"
-    >
+    <article className="flex flex-col rounded-2xl border border-border bg-bg-elevated p-6 transition-colors hover:border-border-strong hover:bg-bg-elevated-hover">
       <div className="flex items-start justify-between gap-3">
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
@@ -27,7 +19,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         </span>
       </div>
 
-      <h3 className="mt-5 font-[family-name:var(--font-display)] text-lg font-semibold text-text-primary transition-colors group-hover:text-accent">
+      <h3 className="mt-5 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-text-primary">
         {project.name}
       </h3>
 
@@ -35,11 +27,31 @@ export default function ProjectCard({ project }: { project: Project }) {
         {project.description}
       </p>
 
-      <div className="mt-5 flex items-center gap-1 font-mono text-xs text-text-tertiary">
-        {project.repo && <span>view repo</span>}
-        {project.repo && project.link && <span>·</span>}
-        {project.link && <span>live</span>}
+      <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs">
+        {project.repo && (
+          <a
+            href={project.repo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text-tertiary transition-colors hover:text-accent"
+          >
+            view repo →
+          </a>
+        )}
+        {project.link && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text-tertiary transition-colors hover:text-accent"
+          >
+            live site →
+          </a>
+        )}
+        {!project.repo && !project.link && (
+          <span className="text-text-tertiary">private repo</span>
+        )}
       </div>
-    </Wrapper>
+    </article>
   );
 }
