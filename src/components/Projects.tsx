@@ -9,8 +9,8 @@ export default function Projects() {
         <SectionLabel command="ls ./projects" title="Selected work" />
 
         <div className="grid gap-4 sm:grid-cols-2">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+          {projects.map((project, i) => (
+            <ProjectCard key={project.slug} project={project} index={i} />
           ))}
         </div>
       </div>

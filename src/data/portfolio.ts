@@ -7,6 +7,14 @@ export const profile = {
   name: "Vaibhav Dabas",
   role: "CS & AI undergrad at Plaksha University, building LLM agent systems",
   tagline: "I build multi-step agents and ship them to real users.",
+  // Rotated by the hero typewriter. Keep each one short and true.
+  taglines: [
+    "I build multi-step agents and ship them to real users.",
+    "Typed contracts between every step. Failures that fail loudly.",
+    "42% on FinanceBench, 56% with a human in the loop.",
+    "Open to research internships from January 2027.",
+  ],
+  availability: "Open to research internships from Jan 2027",
   location: "Mohali, India",
   email: "vaibhav16dabas@gmail.com",
   resumeUrl: "",
