@@ -6,7 +6,7 @@ export default function SectionLabel({
   title: string;
 }) {
   return (
-    <div className="mb-10 flex flex-col gap-2">
+    <div data-reveal className="mb-10 flex flex-col gap-2">
       <span className="font-mono text-[13px] text-accent">
         <span className="text-text-tertiary">$</span> {command}
       </span>

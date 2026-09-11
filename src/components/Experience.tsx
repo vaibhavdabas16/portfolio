@@ -9,13 +9,21 @@ export default function Experience() {
 
         <ol className="relative border-l border-border pl-6 sm:pl-8">
           {experience.map((item, i) => (
-            <li key={i} className="relative pb-12 last:pb-0">
-              <span className="absolute -left-[29px] sm:-left-[37px] top-1 h-2.5 w-2.5 rounded-full border-2 border-accent bg-bg" />
+            <li
+              key={i}
+              data-reveal
+              style={{ "--d": `${i * 90}ms` } as React.CSSProperties}
+              className="group relative pb-12 last:pb-0"
+            >
+              <span className="node-glow absolute -left-[29px] sm:-left-[37px] top-1 h-2.5 w-2.5 rounded-full border-2 border-accent bg-bg transition-transform group-hover:scale-125" />
 
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <h3 className="font-[family-name:var(--font-display)] text-base font-semibold text-text-primary">
                   {item.role}
-                  <span className="text-text-tertiary font-normal"> — {item.org}</span>
+                  <span className="text-text-tertiary font-normal">
+                    {" "}
+                    · {item.org}
+                  </span>
                 </h3>
                 <span className="font-mono text-xs text-text-tertiary whitespace-nowrap">
                   {item.period}
@@ -31,7 +39,7 @@ export default function Experience() {
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-border px-2.5 py-1 font-mono text-[11px] text-text-secondary"
+                      className="chip rounded-full border border-border px-2.5 py-1 font-mono text-[11px] text-text-secondary"
                     >
                       {tag}
                     </span>

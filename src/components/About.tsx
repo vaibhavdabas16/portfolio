@@ -12,6 +12,8 @@ export default function About() {
             {profile.about.map((para, i) => (
               <p
                 key={i}
+                data-reveal
+                style={{ "--d": `${i * 90}ms` } as React.CSSProperties}
                 className="text-[15px] sm:text-base leading-relaxed text-text-secondary"
               >
                 {para}
@@ -19,11 +21,15 @@ export default function About() {
             ))}
           </div>
 
-          <div className="flex sm:flex-col flex-wrap gap-2 sm:min-w-[160px]">
+          <div
+            data-reveal
+            style={{ "--d": "200ms" } as React.CSSProperties}
+            className="flex sm:flex-col flex-wrap gap-2 sm:min-w-[160px]"
+          >
             {profile.focus.map((item) => (
               <span
                 key={item}
-                className="rounded-full border border-border px-3 py-1.5 font-mono text-xs text-text-secondary whitespace-nowrap"
+                className="chip rounded-full border border-border px-3 py-1.5 font-mono text-xs text-text-secondary whitespace-nowrap"
               >
                 {item}
               </span>

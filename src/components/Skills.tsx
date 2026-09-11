@@ -8,9 +8,11 @@ export default function Skills() {
         <SectionLabel command="cat skills.json" title="Skills" />
 
         <dl className="space-y-8">
-          {skills.map((group) => (
+          {skills.map((group, i) => (
             <div
               key={group.label}
+              data-reveal
+              style={{ "--d": `${i * 60}ms` } as React.CSSProperties}
               className="grid gap-3 sm:grid-cols-[150px_1fr] sm:gap-6"
             >
               <dt className="font-mono text-[13px] text-text-tertiary sm:pt-1.5">
@@ -20,7 +22,7 @@ export default function Skills() {
                 {group.items.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-border bg-bg-elevated px-3 py-1.5 text-[13px] text-text-secondary"
+                    className="chip rounded-full border border-border bg-bg-elevated px-3 py-1.5 text-[13px] text-text-secondary"
                   >
                     {item}
                   </span>
