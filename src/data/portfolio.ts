@@ -6,15 +6,12 @@
 export const profile = {
   name: "Vaibhav Dabas",
   role: "CS & AI undergrad at Plaksha University, building LLM agent systems",
+  eyebrow: "CS + AI · Plaksha University",
+  headline: "Building AI systems that actually work.",
+  summary:
+    "CS & AI undergraduate building multi-step LLM agents, RAG systems, evaluation pipelines, and human-in-the-loop AI systems.",
   tagline: "I build multi-step agents and ship them to real users.",
-  // Rotated by the hero typewriter. Keep each one short and true.
-  taglines: [
-    "I build multi-step agents and ship them to real users.",
-    "Typed contracts between every step. Failures that fail loudly.",
-    "42% on FinanceBench, 56% with a human in the loop.",
-    "Open to research internships from January 2027.",
-  ],
-  availability: "Open to research internships from Jan 2027",
+  availability: "Open to research internships · Jan 2027",
   location: "Mohali, India",
   email: "vaibhav16dabas@gmail.com",
   resumeUrl: "",
@@ -31,13 +28,15 @@ export const profile = {
     "I am looking for a research internship from January 2027, remote, around 30 hours a week during term and full time from May to July 2027.",
   ],
   focus: [
-    "LLM agents",
+    "LLM Agents",
     "RAG",
     "Evaluation",
-    "Structured outputs",
-    "Human in the loop",
-    "Computer vision",
+    "Structured Outputs",
+    "Human-in-the-loop",
+    "Computer Vision",
   ],
+  // The agent pipeline drawn in the hero.
+  pipeline: ["Input", "Planner", "Tools", "Retrieval", "Evaluation", "Output"],
 };
 
 export type Project = {
@@ -49,6 +48,8 @@ export type Project = {
   link?: string;
   repo?: string;
   featured?: boolean;
+  /** Minimal stage diagram drawn from the description. Not a claim of its own. */
+  pipeline?: string[];
 };
 
 export const projects: Project[] = [
@@ -61,6 +62,7 @@ export const projects: Project[] = [
     year: "2026",
     repo: "https://github.com/vaibhavdabas16/sec-risk-deltaagent",
     featured: true,
+    pipeline: ["10-K", "Extraction", "Diff", "Evidence", "Confidence"],
   },
   {
     slug: "aura",
@@ -70,6 +72,7 @@ export const projects: Project[] = [
     tags: ["RAG", "Multi-agent", "Evaluation"],
     year: "2025",
     featured: true,
+    pipeline: ["Query", "Retrieval", "Agents", "Evaluation", "Human review"],
   },
   {
     slug: "marksheet-grading",
@@ -79,6 +82,8 @@ export const projects: Project[] = [
     tags: ["OCR", "Gemini API", "Python"],
     year: "2026",
     repo: "https://github.com/vaibhavdabas16/Automated-Marksheet-Grading-System",
+    featured: true,
+    pipeline: ["Image", "OCR", "Grading", "Sandbox", "TA review"],
   },
   {
     slug: "tree-canopy",
@@ -88,6 +93,7 @@ export const projects: Project[] = [
     tags: ["Instance segmentation", "Remote sensing", "YOLO"],
     year: "2025",
     repo: "https://github.com/vaibhavdabas16/TreeCanopySegmentor",
+    pipeline: ["Satellite image", "Segmentation", "Prediction"],
   },
   {
     slug: "tweet-ai",
@@ -98,6 +104,7 @@ export const projects: Project[] = [
     year: "2025",
     link: "https://tweet-ai-vaibhav.vercel.app/",
     repo: "https://github.com/vaibhavdabas16/tweet-ai",
+    pipeline: ["Draft", "Refine", "User feedback", "Prompt iteration"],
   },
   {
     slug: "drowsiness-detection",
@@ -107,33 +114,75 @@ export const projects: Project[] = [
     tags: ["Computer vision", "Robustness"],
     year: "2025",
     repo: "https://github.com/vaibhavdabas16/Drowsiness-Detection-with-Occlusion",
+    pipeline: ["Frame", "Occlusion handling", "Detection"],
   },
 ];
 
+export type ExperienceKind = "work" | "research" | "competition";
+
 export type Experience = {
+  kind: ExperienceKind;
   role: string;
   org: string;
   period: string;
   description: string;
+  /** Short facts already present in the description, surfaced as callouts. */
+  metrics?: string[];
   tags?: string[];
 };
 
+export const experienceKinds: { kind: ExperienceKind; label: string }[] = [
+  { kind: "work", label: "Professional Experience" },
+  { kind: "research", label: "Research / Grants" },
+  { kind: "competition", label: "Competitions" },
+];
+
 export const experience: Experience[] = [
   {
+    kind: "work",
     role: "Technology Developer Intern",
-    org: "Barclays, Pune",
-    period: "Jun 2026 – Jul 2026",
+    org: "Barclays · Pune",
+    period: "Jun – Jul 2026",
     description:
       "Built a synthetic data generation pipeline in React and Python that removed the production-data dependency from application testing. Shipped an Angular feature-toggle framework and a .NET API to production on a platform serving around 5 million clients, adopted platform wide. Also found and fixed a route guard vulnerability on a live production app.",
+    metrics: [
+      "~5M clients",
+      "Production deployment",
+      "Feature-toggle framework",
+      "Route guard vulnerability fixed",
+    ],
     tags: ["React", "Python", "Angular", ".NET"],
   },
   {
+    kind: "research",
     role: "Emergent Ventures Grantee",
     org: "Mercatus Center",
     period: "Jul 2025",
     description:
       "Awarded a $15,000 Emergent Ventures grant for project ideation and development.",
-    tags: ["Grant"],
+    metrics: ["$15,000 grant"],
+  },
+  {
+    kind: "competition",
+    role: "Rank #14 of 143+ teams",
+    org: "Solafune Tree Canopy Instance Segmentation Challenge",
+    period: "Dec 2025",
+    description:
+      "0.42 weighted mAP on tree canopy instance segmentation from satellite imagery, roughly 0.02 off the top ten.",
+  },
+  {
+    kind: "competition",
+    role: "3rd place",
+    org: "Entrepreneurial Challenge Cup · Plaksha University",
+    period: "2026",
+    description: "Third place in the 2026 Entrepreneurial Challenge Cup.",
+  },
+  {
+    kind: "competition",
+    role: "2nd place",
+    org: "Plaksha University hackathon",
+    period: "",
+    description: "Second place out of 100+ participants.",
   },
 ];
 
@@ -141,25 +190,25 @@ export type SkillGroup = { label: string; items: string[] };
 
 export const skills: SkillGroup[] = [
   {
-    label: "languages",
-    items: ["Python", "TypeScript", "JavaScript", "C/C++", "SQL"],
-  },
-  {
-    label: "ai systems",
+    label: "AI Systems",
     items: [
-      "Multi-step agent design",
+      "Multi-step agents",
       "RAG",
       "Tool calling",
       "Structured outputs",
       "Evals",
       "Prompt iteration",
       "OCR",
-      "Human in the loop",
+      "Human-in-the-loop",
       "Confidence labelling",
     ],
   },
   {
-    label: "apis & frameworks",
+    label: "Languages",
+    items: ["Python", "TypeScript", "JavaScript", "C/C++", "SQL"],
+  },
+  {
+    label: "Frameworks & APIs",
     items: [
       "OpenAI API",
       "Gemini API",
@@ -170,47 +219,47 @@ export const skills: SkillGroup[] = [
     ],
   },
   {
-    label: "ml",
+    label: "ML",
     items: ["NumPy", "Pandas", "CNNs", "LSTMs", "YOLO", "Detectron2"],
   },
   {
-    label: "web",
+    label: "Web",
     items: ["Next.js", "React", "Node.js", "PostgreSQL", "Prisma", "MongoDB"],
   },
-  { label: "tooling", items: ["Git", "Docker", "pytest", "Figma"] },
+  { label: "Tooling", items: ["Git", "Docker", "pytest", "Figma"] },
 ];
 
 export type Highlight = { value: string; label: string; note: string };
 
 export const highlights: Highlight[] = [
   {
-    value: "$15,000",
-    label: "Emergent Ventures grant",
+    value: "$15K",
+    label: "Emergent Ventures Grant",
     note: "Awarded July 2025 for project ideation and development.",
   },
   {
-    value: "#14 / 143+",
-    label: "Solafune segmentation challenge",
-    note: "0.42 weighted mAP on tree canopy instance segmentation, roughly 0.02 off the top ten.",
+    value: "#14",
+    label: "of 143+ teams",
+    note: "Solafune tree canopy segmentation, 0.42 weighted mAP.",
   },
   {
     value: "+23 pts",
-    label: "over the FinanceBench baseline",
-    note: "AURA reached 42%, and 56% once human review was aimed at confidently wrong answers.",
+    label: "FinanceBench improvement",
+    note: "AURA scored 42% on FinanceBench, 23 points above baseline; 56% with human review.",
   },
   {
     value: "~5M",
-    label: "clients on the Barclays platform",
-    note: "Shipped a feature-toggle framework and .NET API that were adopted platform wide.",
+    label: "clients on platform",
+    note: "Barclays feature-toggle framework and .NET API, adopted platform wide.",
   },
   {
     value: "3rd",
-    label: "Entrepreneurial Challenge Cup 2026",
-    note: "Plaksha University.",
+    label: "Entrepreneurial Challenge Cup",
+    note: "Plaksha University, 2026.",
   },
   {
     value: "2nd",
-    label: "Plaksha University hackathon",
+    label: "Plaksha hackathon",
     note: "Out of 100+ participants.",
   },
 ];

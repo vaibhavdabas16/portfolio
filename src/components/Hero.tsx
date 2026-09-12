@@ -1,94 +1,92 @@
 import { profile } from "@/data/portfolio";
-import Typewriter from "./Typewriter";
+import Pipeline from "./Pipeline";
+import Arrow from "./Arrow";
+
+const d = (ms: number) => ({ "--d": `${ms}ms` } as React.CSSProperties);
 
 export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen flex-col justify-center px-6 sm:px-8 pt-24"
+      className="container-x flex min-h-[100svh] flex-col justify-center pb-16 pt-28 md:pt-32"
     >
-      <div className="mx-auto w-full max-w-3xl">
-        <a
-          href="#contact"
-          data-reveal
-          className="inline-flex items-center gap-2.5 rounded-full border border-border bg-bg-elevated/60 px-3.5 py-1.5 font-mono text-[12px] text-text-secondary backdrop-blur transition-colors hover:border-accent-dim hover:text-text-primary"
-        >
-          <span className="live-dot" aria-hidden />
-          {profile.availability}
-        </a>
+      <div className="grid gap-16 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-24">
+        <div className="max-w-2xl">
+          <p data-reveal className="eyebrow">
+            {profile.eyebrow}
+          </p>
 
-        <p
-          data-reveal
-          style={{ "--d": "80ms" } as React.CSSProperties}
-          className="mt-8 font-mono text-[13px] text-text-secondary"
-        >
-          <span className="text-accent">$</span> whoami
-        </p>
-
-        <h1
-          data-reveal
-          style={{ "--d": "140ms" } as React.CSSProperties}
-          className="sheen mt-4 font-[family-name:var(--font-display)] text-[13vw] leading-[0.95] sm:text-6xl md:text-7xl font-semibold tracking-tight"
-        >
-          {profile.name}
-        </h1>
-
-        <p
-          data-reveal
-          style={{ "--d": "220ms" } as React.CSSProperties}
-          className="mt-5 max-w-xl text-lg sm:text-xl text-text-secondary"
-        >
-          {profile.role}
-        </p>
-
-        <p
-          data-reveal
-          style={{ "--d": "300ms" } as React.CSSProperties}
-          className="mt-8 min-h-[1.75em] font-mono text-sm sm:text-base text-text-primary"
-        >
-          <Typewriter phrases={profile.taglines} />
-        </p>
-
-        <div
-          data-reveal
-          style={{ "--d": "380ms" } as React.CSSProperties}
-          className="mt-12 flex flex-wrap items-center gap-3"
-        >
-          <a
-            href="#work"
-            className="rounded-full bg-text-primary px-5 py-2.5 font-mono text-[13px] text-bg transition-transform hover:-translate-y-0.5 hover:opacity-90"
+          <h1
+            data-reveal
+            style={d(60)}
+            className="mt-6 text-[2.5rem] font-medium leading-[1.05] tracking-[-0.03em] text-text-primary sm:text-5xl md:text-6xl lg:text-[4.25rem]"
           >
-            view work
-          </a>
-          <a
-            href="#contact"
-            className="rounded-full border border-border-strong px-5 py-2.5 font-mono text-[13px] text-text-primary transition-colors hover:border-accent hover:text-accent"
+            {profile.headline}
+          </h1>
+
+          <p
+            data-reveal
+            style={d(120)}
+            className="mt-6 max-w-xl text-base leading-relaxed text-text-secondary md:text-lg"
           >
-            get in touch
-          </a>
-          <div className="ml-1 flex items-center gap-4 font-mono text-[13px]">
+            {profile.summary}
+          </p>
+
+          <p
+            data-reveal
+            style={d(180)}
+            className="mt-8 inline-flex items-center gap-2.5 font-mono text-[12px] text-text-secondary"
+          >
+            <span className="live-dot" aria-hidden />
+            {profile.availability}
+          </p>
+
+          <div
+            data-reveal
+            style={d(240)}
+            className="mt-10 flex flex-wrap items-center gap-3"
+          >
+            <a href="#work" className="btn btn-primary arrow-link">
+              View selected work
+              <Arrow dir="r" />
+            </a>
+            <a href="#contact" className="btn btn-secondary">
+              Get in touch
+            </a>
+          </div>
+
+          <div
+            data-reveal
+            style={d(300)}
+            className="mt-8 flex items-center gap-6 font-mono text-[12px] text-text-tertiary"
+          >
             {profile.socials.map((s) => (
               <a
                 key={s.label}
                 href={s.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-draw text-text-secondary hover:text-text-primary"
+                className="link-draw arrow-link hover:text-text-primary"
               >
-                {s.label.toLowerCase()}
+                {s.label}
+                <Arrow dir="ne" className="ml-1 inline align-[-2px]" />
               </a>
             ))}
           </div>
         </div>
-      </div>
 
-      <a
-        href="#about"
-        aria-label="Scroll to about"
-        className="scroll-hint absolute bottom-8 left-1/2 -translate-x-1/2 font-mono text-[11px] text-text-tertiary"
-      >
-        ↓
-      </a>
+        {/* Agent pipeline. Vertical beside the copy on desktop, a wrapped
+            horizontal strip beneath it on smaller screens. */}
+        <div data-reveal style={d(200)} className="lg:pr-4">
+          <p className="eyebrow mb-5">Agent loop</p>
+          <Pipeline
+            steps={profile.pipeline}
+            direction="responsive"
+            periodic
+            label="Agent loop"
+          />
+        </div>
+      </div>
     </section>
   );
 }
