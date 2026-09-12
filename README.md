@@ -15,11 +15,12 @@ Runs on http://localhost:3000.
 
 All copy lives in one file: `src/data/portfolio.ts`.
 
-- `profile` — name, role, tagline, links, about paragraphs, focus areas
-- `projects` — cards in the work grid
-- `experience` — timeline entries
-- `skills` — grouped skill chips
-- `highlights` — achievement stat cards
+- `profile` — name, headline, summary, links, about paragraphs, focus areas,
+  and the hero pipeline steps
+- `projects` — numbered case-study rows; `pipeline` draws the stage diagram
+- `experience` — timeline entries, grouped by `kind` (work / research / competition)
+- `skills` — grouped lists
+- `highlights` — large stats
 
 Components under `src/components` read from that file and nothing else, so
 updating the site is a data edit, not a layout edit.
@@ -28,8 +29,10 @@ updating the site is a data edit, not a layout edit.
 
 Single dark theme. Tokens are CSS variables in `src/app/globals.css`
 (`--bg`, `--border`, `--text-primary`, `--accent`), exposed to Tailwind through
-`@theme inline`. Type is Space Grotesk for headings, Inter for body,
-JetBrains Mono for labels.
+`@theme inline`. Geist for text, Geist Mono for labels, metadata and tags.
+Sections use the editorial two-column frame in `Section.tsx`. Motion is CSS
+only: scroll reveals driven by `Effects.tsx`, a periodic pulse on `Pipeline`,
+and 200–300ms hover transitions. Everything respects `prefers-reduced-motion`.
 
 ## Deploy
 
