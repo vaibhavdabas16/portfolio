@@ -52,7 +52,19 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    // suppressHydrationWarning: the theme script below sets data-theme
+    // before React hydrates, so the attribute differs from server markup.
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          // Resolve theme before first paint: stored choice, else system.
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem("theme");var l=s?s==="light":matchMedia("(prefers-color-scheme: light)").matches;document.documentElement.dataset.theme=l?"light":"dark"}catch(e){}})();`,
+          }}
+        />
+        <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

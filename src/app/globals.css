@@ -1,11 +1,14 @@
 @import "tailwindcss";
 
 /* ── Design tokens ─────────────────────────────────────────────
-   Dark only. Accent is a restrained blue-violet used for status,
-   active states, and the occasional highlight. Spacing follows an
-   8px system (Tailwind's default scale).
+   Dark is the default; [data-theme="light"] on <html> swaps the set.
+   The inline script in layout.tsx resolves the stored or system
+   preference before first paint so there is no flash. Accent is a
+   restrained blue-violet used for status, active states and the
+   occasional highlight. Spacing follows an 8px system.
 ──────────────────────────────────────────────────────────────── */
 :root {
+  color-scheme: dark;
   --bg: #0a0a0b;
   --bg-elevated: #0f0f11;
   --bg-hover: #131316;
@@ -17,7 +20,31 @@
   --accent: #8b93ff;
   --accent-strong: #a7adff;
   --accent-dim: rgba(139, 147, 255, 0.14);
+  --accent-rgb: 139, 147, 255;
   --success: #4ade80;
+  --btn-primary-hover: #ffffff;
+  --glow-alpha: 0.07;
+  --noise-alpha: 0.035;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #fafafa;
+  --bg-elevated: #ffffff;
+  --bg-hover: #f2f2f4;
+  --border: #e6e6ea;
+  --border-strong: #d4d4da;
+  --text-primary: #111113;
+  --text-secondary: #5c5c66;
+  --text-tertiary: #8e8e98;
+  --accent: #5158d6;
+  --accent-strong: #3f46c4;
+  --accent-dim: rgba(81, 88, 214, 0.1);
+  --accent-rgb: 81, 88, 214;
+  --success: #16a34a;
+  --btn-primary-hover: #000000;
+  --glow-alpha: 0.09;
+  --noise-alpha: 0.05;
 }
 
 @theme inline {
@@ -50,10 +77,11 @@ body {
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ── Ambient: a faint radial light at the top and a fine noise
-      layer so large dark areas don't band. Both are static. ── */
+      layer so large flat areas don't band. Both are static. ── */
 body::before {
   content: "";
   position: fixed;
@@ -61,8 +89,8 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(1100px 600px at 50% -10%, rgba(139, 147, 255, 0.07), transparent 60%),
-    radial-gradient(800px 500px at 100% 100%, rgba(139, 147, 255, 0.03), transparent 60%);
+    radial-gradient(1100px 600px at 50% -10%, rgba(var(--accent-rgb), var(--glow-alpha)), transparent 60%),
+    radial-gradient(800px 500px at 100% 100%, rgba(var(--accent-rgb), 0.03), transparent 60%);
 }
 body::after {
   content: "";
@@ -70,13 +98,13 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: var(--noise-alpha);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
 }
 
 ::selection {
-  background: rgba(139, 147, 255, 0.28);
+  background: rgba(var(--accent-rgb), 0.28);
   color: var(--text-primary);
 }
 
@@ -96,6 +124,17 @@ body::after {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* Theme toggle shows the icon for the mode you would switch to */
+.theme-icon-moon {
+  display: none;
+}
+:root[data-theme="light"] .theme-icon-moon {
+  display: block;
+}
+:root[data-theme="light"] .theme-icon-sun {
+  display: none;
 }
 
 /* ── Layout helpers ── */
@@ -185,7 +224,7 @@ body::after {
   color: var(--bg);
 }
 .btn-primary:hover {
-  background: #ffffff;
+  background: var(--btn-primary-hover);
 }
 .btn-secondary {
   border: 1px solid var(--border-strong);
@@ -298,6 +337,58 @@ body::after {
   color: var(--text-secondary);
 }
 
+/* ── Timeline rail ──
+   A faint track, with an accent line that draws down it as the page
+   scrolls (--draw set by Effects.tsx). Nodes light up as the line
+   reaches them. ── */
+.timeline {
+  position: relative;
+}
+.timeline::before,
+.timeline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+.timeline::before {
+  background: var(--border);
+}
+.timeline::after {
+  background: linear-gradient(to bottom, var(--accent), var(--accent) 85%, transparent);
+  transform-origin: top;
+  transform: scaleY(var(--draw, 0));
+  transition: transform 0.15s linear;
+}
+.timeline-node {
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.js .timeline-node {
+  border-color: var(--border-strong);
+  background: var(--bg);
+  box-shadow: none;
+}
+.js [data-reveal].is-visible .timeline-node {
+  border-color: var(--accent);
+}
+.js [data-reveal].is-visible .timeline-node-solid {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.18);
+}
+
+/* ── Skill cells ── */
+.skill-cell {
+  transition: background-color 0.25s ease;
+}
+.skill-cell:hover {
+  background: var(--bg-elevated);
+}
+.skill-cell:hover .eyebrow {
+  color: var(--text-primary);
+}
+
 /* ── Stat numbers ── */
 .stat-value {
   font-variant-numeric: tabular-nums;
@@ -314,7 +405,7 @@ body::after {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(700px 320px at 50% 100%, rgba(139, 147, 255, 0.1), transparent 70%);
+  background: radial-gradient(700px 320px at 50% 100%, rgba(var(--accent-rgb), 0.1), transparent 70%);
 }
 
 /* ── Mobile menu ── */

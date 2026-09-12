@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { profile } from "@/data/portfolio";
 import Arrow from "./Arrow";
+import ThemeToggle from "./ThemeToggle";
 
 const sections = [
   { id: "about", label: "About" },
@@ -67,51 +68,58 @@ export default function Nav() {
           {profile.name}
         </a>
 
-        <ul className="hidden items-center gap-1 md:flex">
-          {sections.map((s) => (
-            <li key={s.id}>
-              <a
-                href={`#${s.id}`}
-                aria-current={active === s.id ? "location" : undefined}
-                className={`relative rounded-md px-3 py-2 text-[13px] transition-colors ${
-                  active === s.id
-                    ? "text-text-primary"
-                    : "text-text-secondary hover:text-text-primary"
-                }`}
-              >
-                {s.label}
-                <span
-                  aria-hidden
-                  className={`absolute inset-x-3 -bottom-px h-px bg-accent transition-opacity duration-300 ${
-                    active === s.id ? "opacity-100" : "opacity-0"
+        <div className="hidden items-center gap-2 md:flex">
+          <ul className="flex items-center gap-1">
+            {sections.map((s) => (
+              <li key={s.id}>
+                <a
+                  href={`#${s.id}`}
+                  aria-current={active === s.id ? "location" : undefined}
+                  className={`relative rounded-md px-3 py-2 text-[13px] transition-colors ${
+                    active === s.id
+                      ? "text-text-primary"
+                      : "text-text-secondary hover:text-text-primary"
                   }`}
-                />
-              </a>
-            </li>
-          ))}
-        </ul>
+                >
+                  {s.label}
+                  <span
+                    aria-hidden
+                    className={`absolute inset-x-3 -bottom-px h-px bg-accent transition-opacity duration-300 ${
+                      active === s.id ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                </a>
+              </li>
+            ))}
+          </ul>
+          <span aria-hidden className="mx-1 h-4 w-px bg-border" />
+          <ThemeToggle />
+        </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
-          className="flex h-10 w-10 items-center justify-center rounded-md text-text-primary md:hidden"
-        >
-          <span className="relative block h-3 w-5" aria-hidden>
-            <span
-              className={`absolute left-0 top-0 h-px w-5 bg-current transition-transform duration-300 ${
-                open ? "translate-y-[6px] rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`absolute left-0 bottom-0 h-px w-5 bg-current transition-transform duration-300 ${
-                open ? "-translate-y-[6px] -rotate-45" : ""
-              }`}
-            />
-          </span>
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="flex h-10 w-10 items-center justify-center rounded-md text-text-primary"
+          >
+            <span className="relative block h-3 w-5" aria-hidden>
+              <span
+                className={`absolute left-0 top-0 h-px w-5 bg-current transition-transform duration-300 ${
+                  open ? "translate-y-[6px] rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`absolute left-0 bottom-0 h-px w-5 bg-current transition-transform duration-300 ${
+                  open ? "-translate-y-[6px] -rotate-45" : ""
+                }`}
+              />
+            </span>
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
