@@ -75,17 +75,6 @@ export const projects: Project[] = [
     pipeline: ["Query", "Retrieval", "Agents", "Evaluation", "Human review"],
   },
   {
-    slug: "marksheet-grading",
-    name: "Automated Marksheet Grading System",
-    description:
-      "An end-to-end pipeline that reads handwritten exam sheets and grades them against instructor rubrics, replacing manual evaluation for batches of 120+ students. Local OCR with the Gemini API for subjective answers and code, sandboxed execution under 100ms per submission, and a TA review dashboard that gates every result behind human approval.",
-    tags: ["OCR", "Gemini API", "Python"],
-    year: "2026",
-    repo: "https://github.com/vaibhavdabas16/Automated-Marksheet-Grading-System",
-    featured: true,
-    pipeline: ["Image", "OCR", "Grading", "Sandbox", "TA review"],
-  },
-  {
     slug: "tree-canopy",
     name: "TreeCanopySegmentor",
     description:
