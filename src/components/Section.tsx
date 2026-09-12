@@ -25,16 +25,18 @@ export default function Section({
     >
       <div className="grid gap-10 md:grid-cols-[160px_1fr] md:gap-12 lg:grid-cols-[240px_1fr] lg:gap-16">
         <div data-reveal className="md:sticky md:top-24 md:self-start">
-          <h2 className="eyebrow flex items-baseline gap-3">
+          <h2>
             {index && (
-              <span aria-hidden className="text-text-tertiary/70">
+              <span aria-hidden className="eyebrow block">
                 {index}
               </span>
             )}
-            <span>{label}</span>
+            <span className="mt-3 block text-2xl font-medium leading-tight tracking-[-0.02em] text-text-primary md:text-[28px] lg:text-3xl">
+              {label}
+            </span>
           </h2>
           {title && (
-            <p className="mt-4 text-2xl font-medium tracking-[-0.02em] text-text-primary md:text-3xl">
+            <p className="mt-4 max-w-[220px] text-[15px] leading-relaxed text-text-secondary">
               {title}
             </p>
           )}
