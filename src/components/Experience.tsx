@@ -16,7 +16,7 @@ export default function Experience() {
                 {group.label}
               </p>
 
-              <ol className="relative ml-1.5 border-l border-border">
+              <ol data-draw className="timeline ml-1.5">
                 {items.map((item, i) => (
                   <li
                     key={item.role + item.org}
@@ -28,9 +28,9 @@ export default function Experience() {
                   >
                     <span
                       aria-hidden
-                      className={`absolute -left-[5px] top-2 h-[9px] w-[9px] rounded-full border ${
+                      className={`timeline-node absolute -left-[4px] top-2 z-10 h-[9px] w-[9px] rounded-full border ${
                         isWork
-                          ? "border-accent bg-accent"
+                          ? "timeline-node-solid border-accent bg-accent"
                           : "border-border-strong bg-bg"
                       }`}
                     />

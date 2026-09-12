@@ -29,6 +29,12 @@ export default function Effects() {
       pending.delete(el);
     };
 
+    // [data-draw] elements (timeline rails) get --draw in 0..1: how far
+    // the 80% line of the viewport has travelled down them.
+    const drawables = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-draw]")
+    );
+
     // Reveal once the element's top crosses 92% of the viewport height.
     const update = () => {
       const line = window.innerHeight * 0.92;
@@ -36,11 +42,20 @@ export default function Effects() {
         const r = el.getBoundingClientRect();
         if (r.top < line && r.bottom > 0) reveal(el);
       }
+      if (!reduceMotion) {
+        const drawLine = window.innerHeight * 0.8;
+        for (const el of drawables) {
+          const r = el.getBoundingClientRect();
+          const p = Math.min(1, Math.max(0, (drawLine - r.top) / r.height));
+          el.style.setProperty("--draw", p.toFixed(3));
+        }
+      }
     };
 
     if (reduceMotion) {
       pending.forEach(reveal);
       pending = new Set();
+      drawables.forEach((el) => el.style.setProperty("--draw", "1"));
     }
     update();
     window.addEventListener("scroll", update, { passive: true });
