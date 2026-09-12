@@ -1,55 +1,92 @@
-import { experience } from "@/data/portfolio";
-import SectionLabel from "./SectionLabel";
+import { experience, experienceKinds } from "@/data/portfolio";
+import Section from "./Section";
 
 export default function Experience() {
   return (
-    <section id="experience" className="px-6 sm:px-8 py-28 sm:py-32">
-      <div className="mx-auto w-full max-w-3xl">
-        <SectionLabel command="git log --oneline" title="Experience" />
+    <Section id="experience" index="03" label="Experience">
+      <div className="space-y-16">
+        {experienceKinds.map((group) => {
+          const items = experience.filter((e) => e.kind === group.kind);
+          if (items.length === 0) return null;
+          const isWork = group.kind === "work";
 
-        <ol className="relative border-l border-border pl-6 sm:pl-8">
-          {experience.map((item, i) => (
-            <li
-              key={i}
-              data-reveal
-              style={{ "--d": `${i * 90}ms` } as React.CSSProperties}
-              className="group relative pb-12 last:pb-0"
-            >
-              <span className="node-glow absolute -left-[29px] sm:-left-[37px] top-1 h-2.5 w-2.5 rounded-full border-2 border-accent bg-bg transition-transform group-hover:scale-125" />
-
-              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <h3 className="font-[family-name:var(--font-display)] text-base font-semibold text-text-primary">
-                  {item.role}
-                  <span className="text-text-tertiary font-normal">
-                    {" "}
-                    · {item.org}
-                  </span>
-                </h3>
-                <span className="font-mono text-xs text-text-tertiary whitespace-nowrap">
-                  {item.period}
-                </span>
-              </div>
-
-              <p className="mt-2 max-w-xl text-sm leading-relaxed text-text-secondary">
-                {item.description}
+          return (
+            <div key={group.kind}>
+              <p data-reveal className="eyebrow mb-6">
+                {group.label}
               </p>
 
-              {item.tags && (
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
+              <ol className="relative ml-1.5 border-l border-border">
+                {items.map((item, i) => (
+                  <li
+                    key={item.role + item.org}
+                    data-reveal
+                    style={{ "--d": `${i * 60}ms` } as React.CSSProperties}
+                    className={`relative pl-8 md:pl-10 ${
+                      isWork ? "pb-4" : "pb-10 last:pb-0"
+                    }`}
+                  >
                     <span
-                      key={tag}
-                      className="chip rounded-full border border-border px-2.5 py-1 font-mono text-[11px] text-text-secondary"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </li>
-          ))}
-        </ol>
+                      aria-hidden
+                      className={`absolute -left-[5px] top-2 h-[9px] w-[9px] rounded-full border ${
+                        isWork
+                          ? "border-accent bg-accent"
+                          : "border-border-strong bg-bg"
+                      }`}
+                    />
+
+                    <div className="grid gap-4 lg:grid-cols-[120px_1fr] lg:gap-8">
+                      <span className="font-mono text-[12px] text-text-tertiary lg:pt-1">
+                        {item.period}
+                      </span>
+
+                      <div className="min-w-0">
+                        <h3
+                          className={`font-medium tracking-[-0.02em] text-text-primary ${
+                            isWork ? "text-2xl md:text-3xl" : "text-lg"
+                          }`}
+                        >
+                          {item.role}
+                        </h3>
+                        <p className="mt-1.5 text-[15px] text-text-secondary">
+                          {item.org}
+                        </p>
+
+                        <p
+                          className={`mt-4 leading-relaxed text-text-secondary ${
+                            isWork ? "max-w-2xl text-base" : "max-w-xl text-[15px]"
+                          }`}
+                        >
+                          {item.description}
+                        </p>
+
+                        {item.metrics && isWork && (
+                          <ul className="mt-8 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+                            {item.metrics.map((m) => (
+                              <li
+                                key={m}
+                                className="bg-bg-elevated px-4 py-4 text-[13px] leading-snug text-text-primary"
+                              >
+                                {m}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+
+                        {item.tags && (
+                          <p className="mt-6 font-mono text-[12px] text-text-tertiary">
+                            {item.tags.join(" · ")}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          );
+        })}
       </div>
-    </section>
+    </Section>
   );
 }

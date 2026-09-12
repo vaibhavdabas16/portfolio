@@ -1,42 +1,40 @@
 import { profile } from "@/data/portfolio";
-import SectionLabel from "./SectionLabel";
+import Section from "./Section";
 
 export default function About() {
   return (
-    <section id="about" className="px-6 sm:px-8 py-28 sm:py-32">
-      <div className="mx-auto w-full max-w-3xl">
-        <SectionLabel command="cat about.md" title="About" />
-
-        <div className="grid gap-10 sm:grid-cols-[1fr_auto] sm:gap-16">
-          <div className="space-y-5">
-            {profile.about.map((para, i) => (
-              <p
-                key={i}
-                data-reveal
-                style={{ "--d": `${i * 90}ms` } as React.CSSProperties}
-                className="text-[15px] sm:text-base leading-relaxed text-text-secondary"
-              >
-                {para}
-              </p>
-            ))}
-          </div>
-
-          <div
+    <Section id="about" index="01" label="About">
+      <div className="max-w-2xl space-y-6">
+        {profile.about.map((para, i) => (
+          <p
+            key={i}
             data-reveal
-            style={{ "--d": "200ms" } as React.CSSProperties}
-            className="flex sm:flex-col flex-wrap gap-2 sm:min-w-[160px]"
+            style={{ "--d": `${i * 60}ms` } as React.CSSProperties}
+            className={`leading-relaxed ${
+              i === 0
+                ? "text-lg text-text-primary md:text-xl"
+                : "text-base text-text-secondary"
+            }`}
           >
-            {profile.focus.map((item) => (
-              <span
-                key={item}
-                className="chip rounded-full border border-border px-3 py-1.5 font-mono text-xs text-text-secondary whitespace-nowrap"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
+            {para}
+          </p>
+        ))}
       </div>
-    </section>
+
+      <div
+        data-reveal
+        style={{ "--d": "180ms" } as React.CSSProperties}
+        className="mt-12"
+      >
+        <p className="eyebrow mb-4">Areas</p>
+        <ul className="flex flex-wrap gap-2">
+          {profile.focus.map((item) => (
+            <li key={item} className="tag">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Section>
   );
 }

@@ -1,42 +1,64 @@
 import { profile } from "@/data/portfolio";
-import SectionLabel from "./SectionLabel";
 import CopyEmail from "./CopyEmail";
+import Arrow from "./Arrow";
 
 export default function Contact() {
   return (
-    <section id="contact" className="px-6 sm:px-8 py-28 sm:py-32">
-      <div className="mx-auto w-full max-w-3xl">
-        <SectionLabel command="mail --compose" title="Get in touch" />
+    <section
+      id="contact"
+      className="contact-band border-t border-border py-28 md:py-40"
+    >
+      <div className="container-x">
+        <p data-reveal className="eyebrow">
+          06 · Contact
+        </p>
+
+        <h2
+          data-reveal
+          style={{ "--d": "60ms" } as React.CSSProperties}
+          className="mt-6 max-w-3xl text-4xl font-medium leading-[1.08] tracking-[-0.03em] text-text-primary sm:text-5xl md:text-6xl"
+        >
+          Let&rsquo;s build something that survives contact with reality.
+        </h2>
 
         <p
           data-reveal
-          className="max-w-xl text-[15px] sm:text-base leading-relaxed text-text-secondary"
+          style={{ "--d": "120ms" } as React.CSSProperties}
+          className="mt-6 max-w-xl text-base leading-relaxed text-text-secondary md:text-lg"
         >
-          I am looking for a research internship, and I am happy to talk about
-          agent systems, evaluation, or anything on this page. Email is the
-          fastest way to reach me. I read every one.
+          I&rsquo;m currently looking for research internship opportunities
+          starting January 2027.
         </p>
-
-        <div data-reveal style={{ "--d": "80ms" } as React.CSSProperties}>
-          <CopyEmail email={profile.email} />
-        </div>
 
         <div
           data-reveal
-          style={{ "--d": "160ms" } as React.CSSProperties}
-          className="mt-10 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[13px] text-text-secondary"
+          style={{ "--d": "180ms" } as React.CSSProperties}
+          className="mt-10 flex flex-wrap items-center gap-3"
         >
+          <a href={`mailto:${profile.email}`} className="btn btn-primary arrow-link">
+            Email me
+            <Arrow dir="r" />
+          </a>
           {profile.socials.map((s) => (
             <a
               key={s.label}
               href={s.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="link-draw hover:text-accent"
+              className="btn btn-secondary arrow-link"
             >
-              {s.label} ↗
+              {s.label}
+              <Arrow dir="ne" />
             </a>
           ))}
+        </div>
+
+        <div
+          data-reveal
+          style={{ "--d": "240ms" } as React.CSSProperties}
+          className="mt-6"
+        >
+          <CopyEmail email={profile.email} />
         </div>
       </div>
     </section>

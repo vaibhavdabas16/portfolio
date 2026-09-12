@@ -1,92 +1,108 @@
-"use client";
-
-import { useRef } from "react";
 import type { Project } from "@/data/portfolio";
+import Pipeline from "./Pipeline";
+import Arrow from "./Arrow";
 
-export default function ProjectCard({
+export default function ProjectRow({
   project,
-  index = 0,
+  index,
+  total,
 }: {
   project: Project;
-  index?: number;
+  index: number;
+  total: number;
 }) {
-  const ref = useRef<HTMLElement>(null);
-
-  // Feed the cursor position (relative to the card) to the CSS spotlight.
-  const onMove = (e: React.PointerEvent<HTMLElement>) => {
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    el.style.setProperty("--x", `${e.clientX - r.left}px`);
-    el.style.setProperty("--y", `${e.clientY - r.top}px`);
-  };
+  const num = String(index + 1).padStart(2, "0");
+  const all = String(total).padStart(2, "0");
+  const primary = project.repo ?? project.link;
 
   return (
     <article
-      ref={ref}
-      onPointerMove={onMove}
       data-reveal
-      style={{ "--d": `${index * 70}ms` } as React.CSSProperties}
-      className={`spot-card group flex flex-col rounded-2xl border border-border bg-bg-elevated p-6 transition-transform duration-300 hover:-translate-y-1 ${
-        project.featured ? "sm:col-span-2 sm:p-8" : ""
+      style={{ "--d": `${Math.min(index, 3) * 50}ms` } as React.CSSProperties}
+      className={`project-row group -mx-4 rounded-lg border-t border-border px-4 md:-mx-6 md:px-6 ${
+        project.featured ? "py-10 md:py-12" : "py-8 md:py-10"
       }`}
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="chip rounded-full border border-border px-2.5 py-1 font-mono text-[11px] text-text-secondary"
-            >
-              {tag}
-            </span>
-          ))}
+      <div className="grid gap-5 lg:grid-cols-[112px_1fr] lg:gap-8">
+        {/* Index + year */}
+        <div className="flex items-baseline gap-4 font-mono text-[12px] lg:flex-col lg:gap-2">
+          <span className="row-index text-text-primary">
+            {num}
+            <span className="text-text-tertiary"> / {all}</span>
+          </span>
+          <span className="row-meta text-text-tertiary">{project.year}</span>
         </div>
-        <span className="shrink-0 font-mono text-[11px] text-text-tertiary">
-          {project.year}
-        </span>
-      </div>
 
-      <h3
-        className={`mt-5 font-[family-name:var(--font-display)] font-semibold tracking-tight text-text-primary transition-colors group-hover:text-accent ${
-          project.featured ? "text-xl sm:text-2xl" : "text-lg"
-        }`}
-      >
-        {project.name}
-      </h3>
-
-      <p
-        className={`mt-2 text-sm leading-relaxed text-text-secondary ${
-          project.featured ? "max-w-2xl sm:text-[15px]" : ""
-        }`}
-      >
-        {project.description}
-      </p>
-
-      <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs">
-        {project.repo && (
-          <a
-            href={project.repo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-draw relative z-10 text-text-tertiary hover:text-accent"
+        <div className="min-w-0">
+          <h3
+            className={`font-medium tracking-[-0.02em] text-text-primary ${
+              project.featured ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
+            }`}
           >
-            view repo →
-          </a>
-        )}
-        {project.link && (
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-draw relative z-10 text-text-tertiary hover:text-accent"
+            {primary ? (
+              <a
+                href={primary}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-draw"
+              >
+                {project.name}
+              </a>
+            ) : (
+              project.name
+            )}
+          </h3>
+
+          <p
+            className={`mt-4 leading-relaxed text-text-secondary ${
+              project.featured ? "max-w-2xl text-base" : "max-w-xl text-[15px]"
+            }`}
           >
-            live site →
-          </a>
-        )}
-        {!project.repo && !project.link && (
-          <span className="text-text-tertiary">private repo</span>
-        )}
+            {project.description}
+          </p>
+
+          {project.pipeline && (
+            <div className="mt-6">
+              <Pipeline steps={project.pipeline} label={project.name} compact />
+            </div>
+          )}
+
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
+            <p className="row-meta font-mono text-[12px] text-text-tertiary">
+              {project.tags.join(" · ")}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px]">
+              {project.repo && (
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="arrow-link text-text-primary transition-colors hover:text-accent-strong"
+                >
+                  View repository
+                  <Arrow dir="r" className="ml-1 inline align-[-2px]" />
+                </a>
+              )}
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="arrow-link text-text-primary transition-colors hover:text-accent-strong"
+                >
+                  Live site
+                  <Arrow dir="ne" className="ml-1 inline align-[-2px]" />
+                </a>
+              )}
+              {!project.repo && !project.link && (
+                <span className="font-mono text-[12px] text-text-tertiary">
+                  Private repository
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </article>
   );

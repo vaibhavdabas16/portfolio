@@ -1,37 +1,31 @@
 import { skills } from "@/data/portfolio";
-import SectionLabel from "./SectionLabel";
+import Section from "./Section";
 
 export default function Skills() {
   return (
-    <section id="skills" className="px-6 sm:px-8 py-28 sm:py-32">
-      <div className="mx-auto w-full max-w-3xl">
-        <SectionLabel command="cat skills.json" title="Skills" />
-
-        <dl className="space-y-8">
-          {skills.map((group, i) => (
-            <div
-              key={group.label}
-              data-reveal
-              style={{ "--d": `${i * 60}ms` } as React.CSSProperties}
-              className="grid gap-3 sm:grid-cols-[150px_1fr] sm:gap-6"
-            >
-              <dt className="font-mono text-[13px] text-text-tertiary sm:pt-1.5">
-                {group.label}
-              </dt>
-              <dd className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className="chip rounded-full border border-border bg-bg-elevated px-3 py-1.5 text-[13px] text-text-secondary"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </dd>
-            </div>
-          ))}
-        </dl>
+    <Section id="skills" index="04" label="Skills">
+      <div className="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        {skills.map((group, i) => (
+          <div
+            key={group.label}
+            data-reveal
+            style={{ "--d": `${(i % 3) * 60}ms` } as React.CSSProperties}
+            className="border-t border-border pt-5"
+          >
+            <h3 className="eyebrow text-text-secondary">{group.label}</h3>
+            <ul className="mt-5 space-y-2.5">
+              {group.items.map((item) => (
+                <li
+                  key={item}
+                  className="text-[15px] text-text-primary/85 transition-colors hover:text-text-primary"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 }

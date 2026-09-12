@@ -14,17 +14,11 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <div className="mx-auto max-w-3xl border-t border-border" />
         <About />
-        <div className="mx-auto max-w-3xl border-t border-border" />
         <Projects />
-        <div className="mx-auto max-w-3xl border-t border-border" />
         <Experience />
-        <div className="mx-auto max-w-3xl border-t border-border" />
         <Skills />
-        <div className="mx-auto max-w-3xl border-t border-border" />
         <Highlights />
-        <div className="mx-auto max-w-3xl border-t border-border" />
         <Contact />
       </main>
       <Footer />

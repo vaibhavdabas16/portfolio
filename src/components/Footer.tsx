@@ -2,22 +2,31 @@ import { profile } from "@/data/portfolio";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border px-6 sm:px-8 py-8">
-      <div className="mx-auto flex w-full max-w-3xl flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-xs text-text-tertiary">
+    <footer className="border-t border-border py-8">
+      <div className="container-x flex flex-col gap-3 font-mono text-[12px] text-text-tertiary sm:flex-row sm:items-center sm:justify-between">
         <span>
           © {new Date().getFullYear()} {profile.name} · {profile.location}
         </span>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-2">
+          {profile.socials.map((s, i) => (
+            <span key={s.label} className="flex items-center gap-2">
+              {i > 0 && <span aria-hidden>·</span>}
+              <a
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-draw hover:text-text-primary"
+              >
+                {s.label}
+              </a>
+            </span>
+          ))}
+          <span aria-hidden>·</span>
           <a
-            href="https://github.com/vaibhavdabas16/portfolio"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`mailto:${profile.email}`}
             className="link-draw hover:text-text-primary"
           >
-            source ↗
-          </a>
-          <a href="#top" className="link-draw hover:text-text-primary">
-            back to top ↑
+            Email
           </a>
         </div>
       </div>
