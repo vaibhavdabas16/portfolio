@@ -11,7 +11,7 @@ export const profile = {
   summary:
     "CS & AI undergraduate building multi-step LLM agents, RAG systems, evaluation pipelines, and human-in-the-loop AI systems.",
   tagline: "I build multi-step agents and ship them to real users.",
-  availability: "Open to research internships · Jan 2027",
+  availability: "Open to contributing and building things that work",
   location: "Mohali, India",
   email: "vaibhav16dabas@gmail.com",
   resumeUrl: "",
