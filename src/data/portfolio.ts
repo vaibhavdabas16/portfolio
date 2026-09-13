@@ -23,8 +23,9 @@ export const profile = {
     },
   ],
   about: [
-    "I am in my final year of a BTech in Computer Science and AI at Plaksha University. Most of what I build is multi-step LLM agents: systems that plan, call tools, carry typed state between steps, and fail loudly instead of quietly returning something wrong.",
-    "The parts I care about are the ones that usually get skipped. Rate limits and partial data. Malformed intermediate output. Answers the model is confident about and wrong about. What a human reviewer actually sees when the system is unsure. I have put this kind of work in front of real users, not just demos.",
+    "I'm a final-year Computer Science and AI student at Plaksha University. I build LLM systems that have to hold up outside a notebook: multi-step agents that plan, call tools and carry typed state between steps, retrieval pipelines over messy financial filings, and evaluation loops that catch the model being wrong before a user does.",
+    "What separates a demo from a system is everything that happens at the edges. A rate-limited API halfway through a run. A parser that returns something almost right. A confident answer with nothing behind it. I design for those cases first: typed contracts between every step, source-backed confidence on every claim, and a human review path aimed at the exact answers the system is most likely to get wrong. On AURA, that review step alone took FinanceBench accuracy from 42% to 56%.",
+    "This work has reached real people, not just benchmarks: a product with 50+ users in its first month, and code in production at Barclays on a platform serving around 5 million clients. When the problem calls for it I work in computer vision too, most recently placing 14th of 143+ teams in the Solafune tree canopy segmentation challenge.",
   ],
   focus: [
     "LLM Agents",
