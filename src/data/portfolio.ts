@@ -58,21 +58,23 @@ export type Project = {
   link?: string;
   repo?: string;
   featured?: boolean;
+  /** Shown as a small badge next to the year, e.g. "In progress". */
+  status?: string;
   /** Minimal stage diagram drawn from the description. Not a claim of its own. */
   pipeline?: string[];
 };
 
 export const projects: Project[] = [
   {
-    slug: "sec-risk-delta",
-    name: "SEC 10-K Risk Factor Delta Agent",
+    slug: "travel-agent",
+    name: "Multi-Agent Travel Planner",
     description:
-      "A six-step agent, written without an agent framework, that diffs the Risk Factor sections of consecutive SEC 10-K filings and backs each change with news evidence. Typed Pydantic contracts between every step, source-labelled confidence on every claim, and graceful handling of EDGAR rate limits and single-filing companies.",
-    tags: ["Python", "Pydantic", "Agents", "Tool use"],
+      "Turns a free-form trip request into a day-by-day itinerary with real flights, hotels and routes. A LangGraph graph of specialised nodes: intake extracts constraints, discovery searches Google Places and a Pinecone vector index with an LLM filter for irrelevant results, an optimizer solves a vehicle-routing problem with time windows in Google OR-Tools so each day respects opening hours and travel times, and accommodation and transport nodes pull live offers from Amadeus and Google Routes. Three-layer Redis caching and a cost tracker keep API and LLM spend inside quota. FastAPI backend, React wizard frontend.",
+    tags: ["LangGraph", "FastAPI", "OR-Tools", "React"],
     year: "2026",
-    repo: "https://github.com/vaibhavdabas16/sec-risk-deltaagent",
+    status: "In progress",
     featured: true,
-    pipeline: ["10-K", "Extraction", "Diff", "Evidence", "Confidence"],
+    pipeline: ["Intent", "Discovery", "Route optimizer", "Hotels & flights", "Itinerary"],
   },
   {
     slug: "aura",

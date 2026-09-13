@@ -31,6 +31,12 @@ export default function ProjectRow({
             <span className="text-text-tertiary"> / {all}</span>
           </span>
           <span className="row-meta text-text-tertiary">{project.year}</span>
+          {project.status && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border px-2 py-0.5 text-[10px] uppercase tracking-[0.1em] text-text-secondary">
+              <span className="live-dot" aria-hidden />
+              {project.status}
+            </span>
+          )}
         </div>
 
         <div className="min-w-0">
@@ -97,7 +103,7 @@ export default function ProjectRow({
               )}
               {!project.repo && !project.link && (
                 <span className="font-mono text-[12px] text-text-tertiary">
-                  Private repository
+                  {project.status ? "Private, in progress" : "Private repository"}
                 </span>
               )}
             </div>
