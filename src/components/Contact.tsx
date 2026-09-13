@@ -26,8 +26,9 @@ export default function Contact() {
           style={{ "--d": "120ms" } as React.CSSProperties}
           className="mt-6 max-w-xl text-base leading-relaxed text-text-secondary md:text-lg"
         >
-          I&rsquo;m currently looking for research internship opportunities
-          starting January 2027.
+          Open to contributing to open source, collaborating on research, and
+          building things that ship. If you have a problem worth working on,
+          I&rsquo;d like to hear about it.
         </p>
 
         <div

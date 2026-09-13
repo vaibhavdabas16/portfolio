@@ -25,7 +25,6 @@ export const profile = {
   about: [
     "I am in my final year of a BTech in Computer Science and AI at Plaksha University. Most of what I build is multi-step LLM agents: systems that plan, call tools, carry typed state between steps, and fail loudly instead of quietly returning something wrong.",
     "The parts I care about are the ones that usually get skipped. Rate limits and partial data. Malformed intermediate output. Answers the model is confident about and wrong about. What a human reviewer actually sees when the system is unsure. I have put this kind of work in front of real users, not just demos.",
-    "I am looking for a research internship from January 2027, remote, around 30 hours a week during term and full time from May to July 2027.",
   ],
   focus: [
     "LLM Agents",
