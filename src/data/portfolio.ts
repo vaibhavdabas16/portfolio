@@ -23,9 +23,8 @@ export const profile = {
     },
   ],
   about: [
-    "I'm a final-year Computer Science and AI student at Plaksha University. I build LLM systems that have to hold up outside a notebook: multi-step agents that plan, call tools and carry typed state between steps, retrieval pipelines over messy financial filings, and evaluation loops that catch the model being wrong before a user does.",
-    "What separates a demo from a system is everything that happens at the edges. A rate-limited API halfway through a run. A parser that returns something almost right. A confident answer with nothing behind it. I design for those cases first: typed contracts between every step, source-backed confidence on every claim, and a human review path aimed at the exact answers the system is most likely to get wrong. On AURA, that review step alone took FinanceBench accuracy from 42% to 56%.",
-    "This work has reached real people, not just benchmarks: a product with 50+ users in its first month, and code in production at Barclays on a platform serving around 5 million clients. When the problem calls for it I work in computer vision too, most recently placing 14th of 143+ teams in the Solafune tree canopy segmentation challenge.",
+    "I'm a final-year Computer Science and AI student at Plaksha University. I build LLM systems that have to hold up outside a notebook: agents that plan and call tools, retrieval over messy documents, and evaluation that catches the model being wrong before a user does.",
+    "What separates a demo from a system is everything at the edges. A rate limit halfway through a run. A parser that returns something almost right. A confident answer with nothing behind it. I design for those cases first, and I'd rather a system fail loudly than quietly return something wrong.",
   ],
   focus: [
     "LLM Agents",
