@@ -35,9 +35,9 @@ export default function Hero() {
           <p
             data-reveal
             style={d(180)}
-            className="mt-8 inline-flex items-center gap-2.5 font-mono text-[12px] text-text-secondary"
+            className="mt-8 flex max-w-md items-start gap-2.5 font-mono text-[12px] leading-relaxed text-text-secondary"
           >
-            <span className="live-dot" aria-hidden />
+            <span className="live-dot mt-[6px] shrink-0" aria-hidden />
             {profile.availability}
           </p>
 
@@ -75,16 +75,19 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Agent pipeline. Vertical beside the copy on desktop, a wrapped
-            horizontal strip beneath it on smaller screens. */}
-        <div data-reveal style={d(200)} className="lg:pr-4">
-          <p className="eyebrow mb-5">Agent loop</p>
+        {/* How-I-work loop, drawn like an agent loop. Vertical beside the
+            copy on desktop, beneath it below lg. */}
+        <div data-reveal style={d(200)} className="lg:max-w-[260px] lg:pr-4">
+          <p className="eyebrow mb-5">{profile.loop.label}</p>
           <Pipeline
-            steps={profile.pipeline}
-            direction="responsive"
+            steps={profile.loop.steps}
+            direction="vertical"
             periodic
-            label="Agent loop"
+            label={profile.loop.label}
           />
+          <p className="mt-5 max-w-sm font-mono text-[11px] leading-relaxed text-text-tertiary lg:max-w-none">
+            {profile.loop.note}
+          </p>
         </div>
       </div>
     </section>

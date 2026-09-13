@@ -34,8 +34,19 @@ export const profile = {
     "Human-in-the-loop",
     "Computer Vision",
   ],
-  // The agent pipeline drawn in the hero.
-  pipeline: ["Input", "Planner", "Tools", "Retrieval", "Evaluation", "Output"],
+  // The loop drawn in the hero: how I work, in the shape of an agent loop.
+  loop: {
+    label: "How I work",
+    steps: [
+      "Find a real problem",
+      "Read the paper",
+      "Build v0",
+      "Test on real data",
+      "Ship to users",
+      "Fix what breaks",
+    ],
+    note: "Then back to the top. It's the same loop my agents run: plan, act, check, correct.",
+  },
 };
 
 export type Project = {
