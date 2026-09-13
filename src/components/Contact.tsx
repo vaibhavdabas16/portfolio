@@ -26,9 +26,9 @@ export default function Contact() {
           style={{ "--d": "120ms" } as React.CSSProperties}
           className="mt-6 max-w-xl text-base leading-relaxed text-text-secondary md:text-lg"
         >
-          Open to contributing to open source, collaborating on research, and
-          building things that ship. If you have a problem worth working on,
-          I&rsquo;d like to hear about it.
+          Open to early-stage startups, research collaborations, and open
+          source. If you&rsquo;re building something real and need someone who
+          ships, I&rsquo;d like to hear about it.
         </p>
 
         <div
