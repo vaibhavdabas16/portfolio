@@ -68,6 +68,17 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "sewa-setu",
+    name: "Sewa Setu, AI Assistant for Old Age Pensions",
+    description:
+      "Applying for a government old-age pension means a long online form, which is hard for an elderly person on a shared phone. Sewa Setu lets any AI assistant, like Claude or ChatGPT, help them apply and track their application just by talking, and helps block officers review and decide cases. Two MCP servers with OAuth sign-in sit on top of the pension portal, and the portal's own rules decide eligibility, so the assistant can never approve someone the counter would not. Still building.",
+    tags: ["MCP", "OAuth 2.1", "Python"],
+    year: "2026",
+    status: "In progress",
+    featured: true,
+    pipeline: ["Citizen chat", "MCP tools", "Portal rules", "Officer review"],
+  },
+  {
     slug: "travel-agent",
     name: "Multi-Agent Travel Planner",
     description:
@@ -81,17 +92,6 @@ export const projects: Project[] = [
     repo: "https://github.com/vaibhavdabas16/TravelAgent",
     featured: true,
     pipeline: ["Intent", "Discovery", "Route optimizer", "Hotels & flights", "Itinerary"],
-  },
-  {
-    slug: "sewa-setu",
-    name: "Sewa Setu, AI Assistant for Old Age Pensions",
-    description:
-      "Applying for a government old-age pension means a long online form, which is hard for an elderly person on a shared phone. Sewa Setu lets any AI assistant, like Claude or ChatGPT, help them apply and track their application just by talking, and helps block officers review and decide cases. Two MCP servers with OAuth sign-in sit on top of the pension portal, and the portal's own rules decide eligibility, so the assistant can never approve someone the counter would not. Still building.",
-    tags: ["MCP", "OAuth 2.1", "Python"],
-    year: "2026",
-    status: "In progress",
-    featured: true,
-    pipeline: ["Citizen chat", "MCP tools", "Portal rules", "Officer review"],
   },
   {
     slug: "aura",
