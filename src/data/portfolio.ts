@@ -97,7 +97,7 @@ export const projects: Project[] = [
     slug: "aura",
     name: "AURA, Autonomous RAG for Financial Analysis",
     description:
-      "A multi-agent RAG system over financial filings. It scored 42% on FinanceBench, 23 points above the baseline, and reached 56% once human review was pointed at the cases the system was confidently wrong about. An agents-as-tools configuration hit 92% on multi-hop questions.",
+      "An AI analyst that answers questions about company financial filings. A planner breaks each question into smaller steps and hands them to specialist agents: one searches the filings and falls back to the web when they don't have the answer, one does the maths in code instead of guessing numbers, and one writes full company reports on request. Answers are checked against their sources before they're returned, and it asks the user when a question is unclear. It scored 42% on FinanceBench, 23 points above the baseline, and 56% with human review.",
     tags: ["RAG", "Multi-agent", "Evaluation"],
     year: "2025",
     featured: true,
