@@ -167,6 +167,13 @@ export const experience: Experience[] = [
   },
   {
     kind: "competition",
+    role: "Top 50 of 32k+",
+    org: "Amazon ML Challenge ’26",
+    period: "2026",
+    description: "Finished in the top 50 of more than 32,000 participants in Amazon's national ML challenge.",
+  },
+  {
+    kind: "competition",
     role: "Rank #14 of 143+ teams",
     org: "Solafune Tree Canopy Instance Segmentation Challenge",
     period: "Dec 2025",
