@@ -3,7 +3,7 @@ import Section from "./Section";
 
 export default function Skills() {
   return (
-    <Section id="skills" index="04" label="Skills">
+    <Section id="skills" index="05" label="Skills">
       <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
         {skills.map((group, i) => {
           // The first group is the core one: brighter, larger tags.

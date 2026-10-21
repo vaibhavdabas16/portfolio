@@ -4,7 +4,7 @@ import ProjectRow from "./ProjectRow";
 
 export default function Projects() {
   return (
-    <Section id="work" index="02" label="Selected work">
+    <Section id="work" index="03" label="Selected work">
       <div className="border-b border-border">
         {projects.map((project, i) => (
           <ProjectRow

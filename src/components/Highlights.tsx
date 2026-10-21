@@ -4,7 +4,7 @@ import Counter from "./Counter";
 
 export default function Highlights() {
   return (
-    <Section id="highlights" index="05" label="Proof of work">
+    <Section id="highlights" index="02" label="Proof of work">
       <ul className="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
         {highlights.map((item, i) => (
           <li

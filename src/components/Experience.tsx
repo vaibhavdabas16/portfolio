@@ -3,7 +3,7 @@ import Section from "./Section";
 
 export default function Experience() {
   return (
-    <Section id="experience" index="03" label="Experience">
+    <Section id="experience" index="04" label="Experience">
       <div className="space-y-16">
         {experienceKinds.map((group) => {
           const items = experience.filter((e) => e.kind === group.kind);
