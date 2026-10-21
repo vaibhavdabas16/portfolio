@@ -71,10 +71,10 @@ export const projects: Project[] = [
     slug: "travel-agent",
     name: "Multi-Agent Travel Planner",
     description:
-      "Describe a trip in plain English and get a day-by-day itinerary with places, hotels, flights and routes. Specialised LangGraph agents handle each step, and an OR-Tools optimizer orders every day around opening hours and travel time. FastAPI backend, React frontend.",
+      "Describe a trip in plain English and get a day-by-day itinerary with places, hotels, flights and routes. Specialised LangGraph agents handle each step, and a route optimizer orders every day around opening hours and travel time. FastAPI backend, React frontend.",
     notice:
       "The Google Maps API behind this project is suspended over billing, so place search and routes are limited on the live site right now.",
-    tags: ["LangGraph", "FastAPI", "OR-Tools", "React"],
+    tags: ["LangGraph", "FastAPI", "React"],
     year: "2026",
     status: "Live",
     link: "https://travel-agent-six-theta.vercel.app/",
