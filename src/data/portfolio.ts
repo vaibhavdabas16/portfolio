@@ -136,7 +136,7 @@ export const projects: Project[] = [
   },
 ];
 
-export type ExperienceKind = "work" | "research" | "competition";
+export type ExperienceKind = "work" | "opensource" | "research" | "competition";
 
 export type Experience = {
   kind: ExperienceKind;
@@ -151,6 +151,7 @@ export type Experience = {
 
 export const experienceKinds: { kind: ExperienceKind; label: string }[] = [
   { kind: "work", label: "Professional Experience" },
+  { kind: "opensource", label: "Open Source" },
   { kind: "research", label: "Research / Grants" },
   { kind: "competition", label: "Competitions" },
 ];
@@ -170,6 +171,14 @@ export const experience: Experience[] = [
       "Route guard vulnerability fixed",
     ],
     tags: ["React", "Python", "Angular", ".NET"],
+  },
+  {
+    kind: "opensource",
+    role: "Contributor",
+    org: "ClawBench · TIGER-AI-Lab",
+    period: "Aug 2026 – present",
+    description:
+      "Started contributing to ClawBench, an open-source benchmark for AI agents. One of my merged PRs added a host-side deadline so a single stuck container can no longer freeze an overnight batch of 100+ tasks.",
   },
   {
     kind: "research",
