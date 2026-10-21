@@ -60,6 +60,8 @@ export type Project = {
   featured?: boolean;
   /** Shown as a small badge next to the year, e.g. "In progress". */
   status?: string;
+  /** Highlighted warning under the description, e.g. a live dependency that is down. */
+  notice?: string;
   /** Minimal stage diagram drawn from the description. Not a claim of its own. */
   pipeline?: string[];
 };
@@ -69,7 +71,9 @@ export const projects: Project[] = [
     slug: "travel-agent",
     name: "Multi-Agent Travel Planner",
     description:
-      "Describe a trip in plain English and get a day-by-day itinerary with places, hotels, flights and routes. Specialised LangGraph agents handle each step, and an OR-Tools optimizer orders every day around opening hours and travel time. FastAPI backend, React frontend. Note: the Google Maps API is suspended over billing, so place search runs on a limited fallback for now.",
+      "Describe a trip in plain English and get a day-by-day itinerary with places, hotels, flights and routes. Specialised LangGraph agents handle each step, and an OR-Tools optimizer orders every day around opening hours and travel time. FastAPI backend, React frontend.",
+    notice:
+      "The Google Maps API behind this project is suspended over billing, so place search and routes are limited on the live site right now.",
     tags: ["LangGraph", "FastAPI", "OR-Tools", "React"],
     year: "2026",
     status: "Live",
@@ -243,6 +247,11 @@ export type Highlight = { value: string; label: string; note: string };
 
 export const highlights: Highlight[] = [
   {
+    value: "Top 50",
+    label: "Amazon ML Challenge ’26",
+    note: "Out of 32,000+ participants.",
+  },
+  {
     value: "$15K",
     label: "Emergent Ventures Grant",
     note: "Awarded July 2025 for project ideation and development.",
@@ -251,11 +260,6 @@ export const highlights: Highlight[] = [
     value: "#14",
     label: "of 143+ teams",
     note: "Solafune tree canopy segmentation, 0.42 weighted mAP.",
-  },
-  {
-    value: "+23 pts",
-    label: "FinanceBench improvement",
-    note: "AURA scored 42% on FinanceBench, 23 points above baseline; 56% with human review.",
   },
   {
     value: "~5M",

@@ -67,6 +67,18 @@ export default function ProjectRow({
             {project.description}
           </p>
 
+          {project.notice && (
+            <p
+              role="note"
+              className="mt-4 flex max-w-2xl items-start gap-2.5 rounded-md border border-warning/40 bg-warning-dim px-3.5 py-2.5 text-[14px] leading-relaxed text-text-primary"
+            >
+              <span className="mt-[3px] shrink-0 font-mono text-[11px] uppercase tracking-[0.1em] text-warning">
+                Heads up
+              </span>
+              <span>{project.notice}</span>
+            </p>
+          )}
+
           {project.pipeline && (
             <div className="mt-6">
               <Pipeline steps={project.pipeline} label={project.name} compact />

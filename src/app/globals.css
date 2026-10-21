@@ -22,6 +22,8 @@
   --accent-dim: rgba(139, 147, 255, 0.14);
   --accent-rgb: 139, 147, 255;
   --success: #4ade80;
+  --warning: #fbbf24;
+  --warning-dim: rgba(251, 191, 36, 0.1);
   --btn-primary-hover: #ffffff;
   --glow-alpha: 0.07;
   --noise-alpha: 0.035;
@@ -42,6 +44,8 @@
   --accent-dim: rgba(81, 88, 214, 0.1);
   --accent-rgb: 81, 88, 214;
   --success: #16a34a;
+  --warning: #b45309;
+  --warning-dim: rgba(217, 119, 6, 0.08);
   --btn-primary-hover: #000000;
   --glow-alpha: 0.09;
   --noise-alpha: 0.05;
@@ -60,6 +64,8 @@
   --color-accent-strong: var(--accent-strong);
   --color-accent-dim: var(--accent-dim);
   --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-warning-dim: var(--warning-dim);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, monospace;
