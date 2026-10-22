@@ -21,6 +21,7 @@ export const profile = {
       label: "LinkedIn",
       url: "https://www.linkedin.com/in/vaibhav-dabas-5a5572275/",
     },
+    { label: "LeetCode", url: "https://leetcode.com/u/Vaibhavvvv_16/" },
   ],
   about: [
     "I'm a final-year Computer Science and AI student at Plaksha University. I build LLM systems that have to hold up outside a notebook: agents that plan and call tools, retrieval over messy documents, and evaluation that catches the model being wrong before a user does.",
@@ -270,6 +271,11 @@ export const highlights: Highlight[] = [
     value: "Top 50",
     label: "Amazon ML Challenge ’26",
     note: "Out of 32,000+ participants.",
+  },
+  {
+    value: "400+",
+    label: "LeetCode problems solved",
+    note: "433 solved, including 280 medium and 53 hard.",
   },
   {
     value: "$15K",
